@@ -24,12 +24,12 @@ class CreateForeignKeys extends Migration {
 						->onDelete('no action')
 						->onUpdate('no action');
 		});
-        Schema::table('post_likes', function(Blueprint $table) {
+        Schema::table('likes', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
-        Schema::table('post_likes', function(Blueprint $table) {
+        Schema::table('likes', function(Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts')
                 ->onDelete('no action')
                 ->onUpdate('no action');
@@ -47,11 +47,11 @@ class CreateForeignKeys extends Migration {
 		Schema::table('posts', function(Blueprint $table) {
 			$table->dropForeign('posts_user_id_foreign');
 		});
-        Schema::table('post_likes', function(Blueprint $table) {
-            $table->dropForeign('post_likes_user_id_foreign');
+        Schema::table('likes', function(Blueprint $table) {
+            $table->dropForeign('likes_user_id_foreign');
         });
         Schema::table('posts', function(Blueprint $table) {
-            $table->dropForeign('post_likes_post_id_foreign');
+            $table->dropForeign('likes_post_id_foreign');
         });
 	}
 }

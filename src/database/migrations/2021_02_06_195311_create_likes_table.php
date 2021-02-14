@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostLikesTable extends Migration
+class CreateLikesTable extends Migration
 {
     public function up()
     {
@@ -19,6 +19,6 @@ class CreatePostLikesTable extends Migration
 
     public function down()
     {
-        Schema::drop('post_likes');
+        Schema::drop('likes');
     }
 }
