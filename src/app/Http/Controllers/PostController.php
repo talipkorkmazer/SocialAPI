@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\BaseHelper;
+use Illuminate\Support\Facades\File;
 use App\Models\Follower;
 use App\Models\Post;
 use App\Models\Like;
@@ -50,7 +50,7 @@ class PostController extends Controller
         $post = Post::create([
             'user_id' => $this->helper->getCurrentUser()->id,
             'photo' => asset('/posts/' . $imageName),
-            'like_count' => 0
+            'like_count' => 0,
         ]);
 
         return $this->response($post, 201, 'Post created successfully.');
@@ -65,7 +65,8 @@ class PostController extends Controller
         $currentUser = $this->helper->getCurrentUser();
         $post = Post::find($id);
 
-        $userFollowModel = Follower::where(['user_id' => $currentUser->id, 'followed_user_id' => $post->user_id])->first();
+        $userFollowModel = Follower::where(['user_id' => $currentUser->id, 'followed_user_id' => $post->user_id])
+            ->first();
 
         if (!$userFollowModel) {
             return $this->response(null, 401, 'The given data was invalid.', [
@@ -127,6 +128,14 @@ class PostController extends Controller
                 ],
             ]);
         }
+
+        $postImageNameArray = explode('/', $post->photo);
+
+        $postImageName = public_path('posts/' . end($postImageNameArray));
+
+        File::delete($postImageName);
+
+        Like::where('post_id', $id)->delete();
 
         $result = $post->delete();
         if (!$result) {
