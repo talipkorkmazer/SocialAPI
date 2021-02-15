@@ -36,7 +36,9 @@ For creation of database tables, run the following command.
 bin/artisan.sh migrate
 ```
 
-If you like you can create 10 mock user by running following command.
+If you like you can create mock data by running following command.
+
+This command will create 100 users, 100 posts and randomly attach users to posts, 100 followers data and 100 random likes.
 
 ```
 bin/artisan.sh db:seed
