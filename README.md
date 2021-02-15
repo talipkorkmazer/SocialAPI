@@ -52,7 +52,7 @@ bin/artisan.sh db:seed
 
 **username**: default
 
-**password**: default
+**password**: secret
 
 If you created the mock data with seeders than you may want to copy a random user's a token from the database, inside the users table, than you can use it for testing with postman.
 
