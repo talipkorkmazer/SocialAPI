@@ -46,7 +46,17 @@ bin/artisan.sh db:seed
 
 ## Usage
 
-By using postman, you can import the SocialAPI.postman_collection.json file.
+**Phpmyadmin url**: http://localhost:8081
+
+**host**: mysql
+
+**username**: default
+
+**password**: default
+
+If you created the mock data with seeders than you may want to copy a random user's a token from the database, inside the users table, than you can use it for testing with postman.
+
+By using postman, you can import the SocialAPI.postman_collection.json file in the route directory.
 
 ## Swagger
 
