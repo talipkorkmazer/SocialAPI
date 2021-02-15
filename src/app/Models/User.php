@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
+    use SoftDeletes, HasFactory, Notifiable;
     /**
      * @var string
      */
@@ -23,8 +24,6 @@ class User extends Authenticatable
      * @var bool
      */
     public $timestamps = true;
-
-    use SoftDeletes, HasFactory, Notifiable;
 
     /**
      * @var string[]

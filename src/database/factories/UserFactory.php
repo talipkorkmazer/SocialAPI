@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'token' => bin2hex(random_bytes(80)),
             'email' => $this->faker->unique()->safeEmail,
-            'username' => $this->faker->userName,
+            'username' => $this->faker->unique()->userName,
             'password' =>  Hash::make('password'), // password
             'full_name' => null,
             'bio' => null,

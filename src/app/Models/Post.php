@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model
 {
+    use HasFactory, SoftDeletes;
+
     /**
      * @var string
      */
@@ -21,9 +24,6 @@ class Post extends Model
      * @var bool
      */
     public $timestamps = true;
-
-    use SoftDeletes;
-
     /**
      * @var string[]
      */
@@ -34,12 +34,11 @@ class Post extends Model
     protected $fillable = ['user_id', 'photo', 'like_count'];
 
     /**
-     * @param $userId
-     * @return Post[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getUserPostsByUserId($userId)
+    public function likes()
     {
-        return $this->where('user_id', $userId)->get();
+        return $this->hasMany(Like::class, 'post_id', 'id');
     }
 
 }
